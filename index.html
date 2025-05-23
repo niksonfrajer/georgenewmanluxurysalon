@@ -1,0 +1,1612 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>George Newman - Luxury Salon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c0a755;
+            --dark-gold: #B8860B;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --white: #f5f5f5;
+            --snow: rgba(255,255,255,0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.8;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Snowfall Animation */
+        .snowfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            background: var(--snow);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: snowfall linear infinite;
+        }
+        
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Header */
+        header {
+            position: relative;
+            height: 100vh;
+            min-height: 800px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85));
+        }
+        
+        .header-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .logo-container {
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .logo {
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.7));
+            transform: translateY(0) rotateY(0deg);
+            animation: floatLogo 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatLogo {
+            0%, 100% { 
+                transform: translateY(0) rotateY(0deg);
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.7));
+            }
+            50% { 
+                transform: translateY(-20px) rotateY(5deg);
+                filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.9));
+            }
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 20px;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .header-content p {
+            font-size: 1.4rem;
+            margin: 0 auto 40px;
+            max-width: 700px;
+            color: rgba(245,245,245,0.9);
+            animation: fadeInUp 1.5s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 2px solid var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1.5s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 0;
+            z-index: 999;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            height: 80px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--gold);
+        }
+        
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: none;
+            box-shadow: none;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            border-radius: 50%;
+            padding: 0 8px;
+            cursor: pointer;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        
+        .lang-btn.active {
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+        
+        .lang-btn img {
+            width: 24px;
+            height: 18px;
+            display: block;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 3.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+            animation: expandLine 1s ease-out 0.5s forwards;
+            transform-origin: left;
+            transform: scaleX(0) translateX(-50%);
+        }
+        
+        @keyframes expandLine {
+            to {
+                transform: scaleX(1) translateX(-50%);
+            }
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 30px;
+            line-height: 1.9;
+            font-size: 1.2rem;
+            color: rgba(245,245,245,0.9);
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Services Section */
+        .services {
+            background: linear-gradient(rgba(26,26,26,0.95), rgba(26,26,26,0.95));
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+        }
+        
+        .service-card {
+            background: var(--medium-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+        
+        .service-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 40px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        .service-content p {
+            margin-bottom: 30px;
+            color: rgba(204,204,204,0.9);
+            font-size: 1.2rem;
+        }
+        
+        /* Price List Section */
+        .price-list {
+            background: linear-gradient(rgba(10,10,10,0.95), rgba(10,10,10,0.95));
+        }
+        
+        .price-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .price-category-btn {
+            padding: 15px 30px;
+            background: var(--medium-gray);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .price-category-btn.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .price-category-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .price-table th {
+            background: var(--gold);
+            color: var(--black);
+            padding: 20px;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .price-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-table tr:hover td {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(rgba(26,26,26,0.95), rgba(26,26,26,0.95));
+        }
+        
+        .gallery-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.77,0,0.18,1);
+            width: 100%;
+            height: 350px;
+        }
+        
+        .gallery-item {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gold);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+            color: var(--black);
+            z-index: 2;
+            cursor: pointer;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-arrow:hover {
+            opacity: 1;
+            background: var(--dark-gold);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(10,10,10,0.95), rgba(10,10,10,0.95));
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 60px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 50px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover .contact-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .map-container {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            height: 600px;
+            border: 2px solid var(--gold);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(rgba(26,26,26,0.95), rgba(26,26,26,0.95));
+            padding: 100px 0 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .footer-logo {
+            max-width: 400px;
+            margin-bottom: 50px;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 50px;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-links a:hover:after {
+            width: 100%;
+        }
+        
+        .copyright {
+            color: rgba(153,153,153,0.7);
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .header-content h1 {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .header-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                gap: 40px;
+            }
+            
+            .contact-container {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .map-container {
+                height: 400px;
+                margin-top: 40px;
+            }
+            
+            .header-content h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                background: rgba(26,26,26,0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: right 0.4s ease;
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .header-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 100px 0;
+            }
+            
+            .footer-links {
+                gap: 30px;
+            }
+            
+            .nav-logo {
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+                padding: 0 20px;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .logo {
+                max-width: 90%;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 60px;
+            }
+            
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-logo {
+                height: 60px;
+            }
+        }
+        
+        .about-motto {
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(192,167,85,0.08);
+            border-left: 5px solid var(--gold);
+            border-radius: 10px;
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        /* Moderní jazykový přepínač s dropdownem a vlajkami */
+        .lang-switcher-modern {
+            position: fixed;
+            top: 18px;
+            right: 32px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .lang-btn-modern {
+            background: var(--medium-gray);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 18px 6px 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s, color 0.3s, box-shadow 0.2s;
+            margin-bottom: 2px;
+        }
+        
+        .lang-btn-modern img {
+            width: 24px;
+            height: 18px;
+            border-radius: 3px;
+        }
+        
+        .lang-btn-modern.active, .lang-btn-modern:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 2px 8px rgba(192,167,85,0.15);
+        }
+        
+        .lang-dropdown-modern {
+            display: none;
+            flex-direction: column;
+            background: var(--dark-gray);
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            margin-top: 4px;
+            min-width: 120px;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            z-index: 1002;
+        }
+        
+        .lang-dropdown-modern.show {
+            display: flex;
+            animation: fadeInLang 0.2s;
+        }
+        
+        @keyframes fadeInLang {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Snowfall Effect -->
+    <div class="snowfall" id="snowfall"></div>
+    <!-- Language Switcher Top Right -->
+    <div class="lang-switcher-modern" id="langSwitcher">
+        <button class="lang-btn-modern" id="langBtnActive">
+            <img src="https://flagcdn.com/24x18/cz.png" alt="CZ" id="langFlagActive" style="width:24px;height:18px;vertical-align:middle;"> <span id="langLabelActive">CZ</span> <i class="fas fa-chevron-down" style="margin-left:6px;"></i>
+        </button>
+        <div class="lang-dropdown-modern" id="langDropdown">
+            <button class="lang-btn-modern" data-lang="cs"><img src="https://flagcdn.com/24x18/cz.png" alt="CZ"> <span>CZ</span></button>
+            <button class="lang-btn-modern" data-lang="en"><img src="https://flagcdn.com/24x18/gb.png" alt="EN"> <span>EN</span></button>
+            <button class="lang-btn-modern" data-lang="ru"><img src="https://flagcdn.com/24x18/ru.png" alt="RU"> <span>RU</span></button>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#home"><img src="https://i.postimg.cc/hjqgnMH3/luxurysalon.png" alt="George Newman Luxury Salon" class="nav-logo"></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-translate="nav-home">Domů</a></li>
+                <li><a href="#about" data-translate="nav-about">O Nás</a></li>
+                <li><a href="#services" data-translate="nav-services">Služby</a></li>
+                <li><a href="#price-list" data-translate="nav-pricelist">Ceník</a></li>
+                <li><a href="#gallery" data-translate="nav-gallery">Galerie</a></li>
+                <li><a href="#contact" data-translate="nav-contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header id="home">
+        <video autoplay muted loop class="header-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-hairdresser-cutting-a-womans-hair-3980-large.mp4" type="video/mp4">
+        </video>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://i.postimg.cc/hjqgnMH3/luxurysalon.png" alt="George Newman Luxury Salon" class="logo">
+            </div>
+            <h1 data-translate="hero-title">Výjimečná péče o vaši krásu</h1>
+            <p data-translate="hero-desc">Nechte se hýčkat v našem prémiovém salonu, kde luxus potkává styl a kvalitu.</p>
+            <a href="#contact" class="btn" data-translate="hero-btn">Rezervovat Termín</a>
+        </div>
+    </header>
+    
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title" data-translate="about-title">O Nás</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p data-translate="about-p1">Vítejte v George Newman Luxury Salon, kde se krása setkává s elegancí a profesionální péčí. Náš salon je místem, kde se tradice potkává s moderními trendy, abychom vám mohli nabídnout to nejlepší z obou světů.</p>
+                    <p data-translate="about-p2">Zkušený stylista a kadeřník se neustále vzdělává a sleduje nejnovější trendy v oblasti péče o vlasy a krásu. Každý klient je pro nás jedinečný a přistupujeme k němu s individuální péčí a pozorností.</p>
+                    <p data-translate="about-p3">Používáme pouze prémiové produkty světových značek, které jsou šetrné k vašim vlasům a pokožce. Naším cílem je, abyste odcházeli nejen s dokonalým účesem, ale také s nezapomenutelným zážitkem.</p>
+                    <div class="about-motto" style="margin-top:30px; padding:30px; background:rgba(192,167,85,0.08); border-left:5px solid var(--gold); border-radius:10px; font-size:1.3rem; color:var(--gold); font-style:italic;">
+                        <span data-translate="about-motto">"Vaše krása je naší vášní. Luxusní péče, která inspiruje."</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.postimg.cc/D0fRkV4v/onas.jpg" alt="Salon Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title" data-translate="services-title">Naše Služby</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://i.postimg.cc/1tvNB6pW/strihyy.jpg" alt="Haircut Service">
+                    </div>
+                    <div class="service-content">
+                        <h3 data-translate="service-haircut">Střihy & Tvarování</h3>
+                        <p data-translate="service-haircut-desc">Profesionální střihy na míru podle vašich představ a typu vlasů. Nabízíme klasické i moderní střihy pro muže i ženy.</p>
+                        <a href="#contact" class="btn" data-translate="service-book">Rezervovat</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://i.postimg.cc/MpwVWWKm/barvenii.jpg" alt="Coloring Service">
+                    </div>
+                    <div class="service-content">
+                        <h3 data-translate="service-coloring">Barvení & Melíry</h3>
+                        <p data-translate="service-coloring-desc">Precizní barvení vlasů s použitím prémiových barev. Nabízíme klasické i kreativní techniky včetně balayage, ombré a babylights.</p>
+                        <a href="#contact" class="btn" data-translate="service-book">Rezervovat</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://i.postimg.cc/Jh4XkPXy/styling.jpg" alt="Styling Service">
+                    </div>
+                    <div class="service-content">
+                        <h3 data-translate="service-styling">Styling & Úpravy</h3>
+                        <p data-translate="service-styling-desc">Speciální stylingové služby pro dokonalý vzhled na každou příležitost. Nabízíme účesy na svatby, plesy a speciální události.</p>
+                        <a href="#contact" class="btn" data-translate="service-book">Rezervovat</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://i.postimg.cc/3wQwQwQw/prodluzovani.jpg" alt="Hair Extensions">
+                    </div>
+                    <div class="service-content">
+                        <h3 data-translate="service-extensions">Prodlužování Vlasů</h3>
+                        <p data-translate="service-extensions-desc">Luxusní prodlužování vlasů s použitím nejkvalitnějších metod a materiálů pro přirozený vzhled a dlouhotrvající efekt.</p>
+                        <a href="#contact" class="btn" data-translate="service-book">Rezervovat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Price List Section -->
+    <section class="section price-list" id="price-list">
+        <div class="container">
+            <h2 class="section-title" data-translate="pricelist-title">Ceník Služeb</h2>
+            <div class="price-categories">
+                <button class="price-category-btn active" data-category="women" data-translate="pricelist-women">Dámské služby</button>
+                <button class="price-category-btn" data-category="men" data-translate="pricelist-men">Pánské služby</button>
+                <button class="price-category-btn" data-category="coloring" data-translate="pricelist-coloring">Barvení</button>
+                <button class="price-category-btn" data-category="treatments" data-translate="pricelist-treatments">Ošetření</button>
+            </div>
+            <div class="price-table-container">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="pricelist-table-service">Služba - Veškeré ceny se odvijí v závislosti na délce a hustotě vlasů, spotřebě materiálu a času</th>
+                            <th data-translate="pricelist-table-price">Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-category="women">
+                            <td data-translate="pricelist-women-1">Dámský střih, mytí, foukaná a konečná úprava</td>
+                            <td data-translate="pricelist-women-1-price">600 CZK - 1 000 CZK</td>
+                        </tr>
+                        <tr data-category="women">
+                            <td data-translate="pricelist-women-2">Dětský střih (do 12 let)</td>
+                            <td data-translate="pricelist-women-2-price">200 CZK - 400 CZK</td>
+                        </tr>
+                        <tr data-category="men">
+                            <td data-translate="pricelist-men-1">Pánský střih - popřípadně s úpravou vousů</td>
+                            <td data-translate="pricelist-men-1-price">300 CZK - 500 CZK</td>
+                        </tr>
+                        <tr data-category="men">
+                            <td data-translate="pricelist-men-2">Dětský střih (do 12 let)</td>
+                            <td data-translate="pricelist-men-2-price">200 CZK</td>
+                        </tr>
+                        <tr data-category="coloring">
+                            <td data-translate="pricelist-coloring-1">Barvení vlasů</td>
+                            <td data-translate="pricelist-coloring-1-price">1 000 CZK - 2 000 CZK</td>
+                        </tr>
+                        <tr data-category="coloring">
+                            <td data-translate="pricelist-coloring-2">Melíry</td>
+                            <td data-translate="pricelist-coloring-2-price">1 250 CZK - 2 500 CZK</td>
+                        </tr>
+                        <tr data-category="coloring">
+                            <td data-translate="pricelist-coloring-3">Ombre, balayage a jiné free hand techniky</td>
+                            <td data-translate="pricelist-coloring-3-price">1 900 CZK - 3 700 CZK</td>
+                        </tr>
+                        <tr data-category="coloring">
+                            <td data-translate="pricelist-coloring-4">Tonování Vlasů</td>
+                            <td data-translate="pricelist-coloring-4-price">700 CZK - 1 100 CZK</td>
+                        </tr>
+                        <tr data-category="treatments">
+                            <td data-translate="pricelist-treatments-1">Keratinové narovnání</td>
+                            <td data-translate="pricelist-treatments-1-price">1 600 CZK - 2 600 CZK</td>
+                        </tr>
+                        <tr data-category="treatments">
+                            <td data-translate="pricelist-treatments-2">Regenerační kúra (Procedůra štěstí na vlasy, regenerace pomocí ultrazvukové žehličky, Botox)</td>
+                            <td data-translate="pricelist-treatments-2-price">1 200 CZK - 2 800 CZK</td>
+                        </tr>
+                        <tr data-category="treatments">
+                            <td data-translate="pricelist-treatments-3">Výživná maska</td>
+                            <td data-translate="pricelist-treatments-3-price">300 CZK - 600 CZK</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+<!-- Gallery Section -->
+<section class="section gallery" id="gallery">
+    <div class="container">
+        <h2 class="section-title" data-translate="gallery-title">Galerie</h2>
+        <div style="display:flex;flex-direction:column;align-items:center;min-height:400px;">
+            <div style="margin-bottom:16px;font-size:1.1rem;text-align:center;">
+                </span>
+            </div>
+
+            <!-- Elfsight Instagram Feed -->
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-187b2397-f62d-4b2d-99cd-00aa61eda11b" data-elfsight-app-lazy></div>
+
+        </div>
+    </div>
+</section>
+    
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-translate="contact-title">Kontakt</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-translate="contact-visit">Navštivte Náš Salon</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text" data-translate="contact-address">
+                                George Newman Luxury Salon<br>
+                                Sadová 19, 360 01 Karlovy Vary 1<br>
+                                Česká Republika
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text" data-translate="contact-phone">+420 777 177 845</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong data-translate="contact-hours-title">Otevírací doba:</strong><br>
+                                <span data-translate="contact-hours">Po-Pá: 10:00 - 18:00, So-Ne: Zavřeno - Dle domluvi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 data-translate="contact-social">Kontaktujte nás zde</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/p/George-Newman-Luxury-Salon-100075625760474/" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/george_newman_luxury_salon/" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://g.co/kgs/kNFmMrV" class="social-link" target="_blank">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2568.7492424282673!2d12.875323476820415!3d50.22581837160309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a099d6ec2df967%3A0xd1c796edf9be3be9!2sGeorge%20Newman%20Luxury%20Salon!5e0!3m2!1scs!2scz!4v1716465931184!5m2!1scs!2scz" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <img src="https://i.postimg.cc/hjqgnMH3/luxurysalon.png" alt="George Newman Luxury Salon" class="footer-logo">
+            <ul class="footer-links">
+                <li><a href="#home">Domů</a></li>
+                <li><a href="#about">O Nás</a></li>
+                <li><a href="#services">Služby</a></li>
+                <li><a href="#price-list">Ceník</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <div class="copyright">
+                &copy; 2025 George Newman Luxury Salon. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Price List Filter
+        const priceCategoryBtns = document.querySelectorAll('.price-category-btn');
+        const priceRows = document.querySelectorAll('.price-table tbody tr');
+        
+        priceCategoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                priceCategoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                // Show/hide rows based on category
+                priceRows.forEach(row => {
+                    if (category === 'all' || row.getAttribute('data-category') === category) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Snowfall Effect
+        const snowfallContainer = document.getElementById('snowfall');
+        const snowflakeCount = 100;
+        
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Random size between 2px and 6px
+            const size = Math.random() * 4 + 2;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            
+            // Random position
+            snowflake.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation duration between 5s and 15s
+            const duration = Math.random() * 10 + 5;
+            snowflake.style.animationDuration = `${duration}s`;
+            
+            // Random delay
+            snowflake.style.animationDelay = `${Math.random() * 5}s`;
+            
+            snowfallContainer.appendChild(snowflake);
+        }
+        
+        // Moderní jazykový přepínač s dropdownem a vlajkami
+        const langSwitcher = document.getElementById('langSwitcher');
+        const langBtnActive = document.getElementById('langBtnActive');
+        const langDropdown = document.getElementById('langDropdown');
+        const langFlagActive = document.getElementById('langFlagActive');
+        const langLabelActive = document.getElementById('langLabelActive');
+        let currentLang = 'cs';
+        const langMap = {
+            cs: { flag: 'https://flagcdn.com/24x18/cz.png', label: 'CZ' },
+            en: { flag: 'https://flagcdn.com/24x18/gb.png', label: 'EN' },
+            ru: { flag: 'https://flagcdn.com/24x18/ru.png', label: 'RU' }
+        };
+        langBtnActive.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('show');
+        });
+        document.querySelectorAll('.lang-btn-modern[data-lang]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const lang = this.getAttribute('data-lang');
+                setLanguage(lang);
+                langDropdown.classList.remove('show');
+                langFlagActive.src = langMap[lang].flag;
+                langLabelActive.textContent = langMap[lang].label;
+                currentLang = lang;
+            });
+        });
+        document.body.addEventListener('click', () => {
+            langDropdown.classList.remove('show');
+        });
+        
+        const translations = {
+            cs: {
+                'nav-home': 'Domů',
+                'nav-about': 'O Nás',
+                'nav-services': 'Služby',
+                'nav-pricelist': 'Ceník',
+                'nav-gallery': 'Galerie',
+                'nav-contact': 'Kontakt',
+                'about-title': 'O Nás',
+                'about-p1': 'Vítejte v George Newman Luxury Salon, kde se krása setkává s elegancí a profesionální péčí. Náš salon je místem, kde se tradice potkává s moderními trendy, abychom vám mohli nabídnout to nejlepší z obou světů.',
+                'about-p2': 'Zkušený stylista a kadeřník se neustále vzdělává a sleduje nejnovější trendy v oblasti péče o vlasy a krásu. Každý klient je pro nás jedinečný a přistupujeme k němu s individuální péčí a pozorností.',
+                'about-p3': 'Používáme pouze prémiové produkty světových značek, které jsou šetrné k vašim vlasům a pokožce. Naším cílem je, abyste odcházeli nejen s dokonalým účesem, ale také s nezapomenutelným zážitkem.',
+                'about-motto': '"Vaše krása je naší vášní. Luxusní péče, která inspiruje."',
+                'services-title': 'Naše Služby',
+                'service-haircut': 'Střihy & Tvarování',
+                'service-haircut-desc': 'Profesionální střihy na míru podle vašich představ a typu vlasů. Nabízíme klasické i moderní střihy pro muže i ženy.',
+                'service-coloring': 'Barvení & Melíry',
+                'service-coloring-desc': 'Precizní barvení vlasů s použitím prémiových barev. Nabízíme klasické i kreativní techniky včetně balayage, ombré a babylights.',
+                'service-styling': 'Styling & Úpravy',
+                'service-styling-desc': 'Speciální stylingové služby pro dokonalý vzhled na každou příležitost. Nabízíme účesy na svatby, plesy a speciální události.',
+                'service-extensions': 'Prodlužování Vlasů',
+                'service-extensions-desc': 'Luxusní prodlužování vlasů s použitím nejkvalitnějších metod a materiálů pro přirozený vzhled a dlouhotrvající efekt.',
+                'service-book': 'Rezervovat',
+                'gallery-title': 'Galerie',
+                'pricelist-title': 'Ceník Služeb',
+                'pricelist-women': 'Dámské služby',
+                'pricelist-men': 'Pánské služby',
+                'pricelist-coloring': 'Barvení',
+                'pricelist-treatments': 'Ošetření',
+                'pricelist-table-service': 'Služba - Veškeré ceny se odvijí v závislosti na délce a hustotě vlasů, spotřebě materiálu a času',
+                'pricelist-table-price': 'Cena',
+                'pricelist-women-1': 'Dámský střih, mytí, foukaná a konečná úprava',
+                'pricelist-women-1-price': '600 Kč - 1 000 Kč',
+                'pricelist-women-2': 'Dětský střih (do 12 let)',
+                'pricelist-women-2-price': '200 - 400 Kč',
+                'pricelist-men-1': 'Pánský střih - popřípadně s úpravou vousů',
+                'pricelist-men-1-price': '300 Kč - 500 Kč',
+                'pricelist-men-2': 'Dětský střih (do 12 let)',
+                'pricelist-men-2-price': '200 Kč',
+                'pricelist-coloring-1': 'Barvení vlasů',
+                'pricelist-coloring-1-price': '1 000 Kč - 2 000 Kč',
+                'pricelist-coloring-2': 'Melíry',
+                'pricelist-coloring-2-price': '1 250 Kč - 2 500 Kč',
+                'pricelist-coloring-3': 'Ombre, balayage a jiné free hand techniky',
+                'pricelist-coloring-3-price': '1 900 Kč - 3 700 Kč',
+                'pricelist-coloring-4': 'Tonování Vlasů',
+                'pricelist-coloring-4-price': '700 Kč - 1 100 Kč',
+                'pricelist-treatments-1': 'Keratinové narovnání',
+                'pricelist-treatments-1-price': '1 600 Kč - 2 600 Kč',
+                'pricelist-treatments-2': 'Regenerační kúra (Procedůra štěstí na vlasy, regenerace pomocí ultrazvukové žehličky, Botox)',
+                'pricelist-treatments-2-price': '1 200 Kč - 2 800 Kč',
+                'pricelist-treatments-3': 'Výživná maska',
+                'pricelist-treatments-3-price': '300 Kč - 600 Kč',
+                'hero-title': 'Výjimečná péče o vaši krásu',
+                'hero-desc': 'Nechte se hýčkat v našem prémiovém salonu, kde luxus potkává styl a kvalitu.',
+                'hero-btn': 'Rezervovat Termín',
+                'contact-title': 'Kontakt',
+                'contact-visit': 'Navštivte Náš Salon',
+                'contact-address': 'George Newman Luxury Salon, Sadová 19, 360 01 Karlovy Vary 1, Česká Republika',
+                'contact-phone': '+420 777 177 845',
+                'contact-email': 'Jorge.wilde.jh@gmail.com',
+                'contact-hours-title': 'Otevírací doba:',
+                'contact-hours': 'Po-Pá: 10:00 - 18:00, So-Ne: Zavřeno - Dle domluvi',
+                'contact-social': 'Kontaktujte nás zde',
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-about': 'About',
+                'nav-services': 'Services',
+                'nav-pricelist': 'Price List',
+                'nav-gallery': 'Gallery',
+                'nav-contact': 'Contact',
+                'about-title': 'About Us',
+                'about-p1': 'Welcome to George Newman Luxury Salon, where beauty meets elegance and professional care. Our salon is a place where tradition meets modern trends to offer you the best of both worlds.',
+                'about-p2': 'An experienced stylist and hairdresser is constantly learning and following the latest trends in hair and beauty care. Every client is unique to us and we approach each with individual care and attention.',
+                'about-p3': 'We use only premium products from world brands that are gentle on your hair and skin. Our goal is for you to leave not only with a perfect hairstyle but also with an unforgettable experience.',
+                'about-motto': '"Your beauty is our passion. Luxury care that inspires."',
+                'services-title': 'Our Services',
+                'service-haircut': 'Haircuts & Shaping',
+                'service-haircut-desc': 'Professional haircuts tailored to your wishes and hair type. We offer classic and modern cuts for men and women.',
+                'service-coloring': 'Coloring & Highlights',
+                'service-coloring-desc': 'Precise hair coloring using premium dyes. We offer classic and creative techniques including balayage, ombré, and babylights.',
+                'service-styling': 'Styling & Adjustments',
+                'service-styling-desc': 'Special styling services for a perfect look for any occasion. We offer hairstyles for weddings, proms, and special events.',
+                'service-extensions': 'Hair Extensions',
+                'service-extensions-desc': 'Luxury hair extensions using the highest quality methods and materials for a natural look and long-lasting effect.',
+                'service-book': 'Book Now',
+                'gallery-title': 'Gallery',
+                'pricelist-title': 'Service Price List',
+                'pricelist-women': "Women's Services",
+                'pricelist-men': "Men's Services",
+                'pricelist-coloring': 'Coloring',
+                'pricelist-treatments': 'Treatments',
+                'pricelist-table-service': 'Service - All prices depend on hair length, density, material usage and time',
+                'pricelist-table-price': 'Price',
+                'pricelist-women-1': 'Women’s haircut, wash, blow-dry and final styling',
+                'pricelist-women-1-price': '600 CZK - 1,000 CZK',
+                'pricelist-women-2': 'Children’s haircut (up to 12 years)',
+                'pricelist-women-2-price': '200 - 400 CZK',
+                'pricelist-men-1': 'Men’s haircut (optionally with beard trim)',
+                'pricelist-men-1-price': '300 CZK - 500 CZK',
+                'pricelist-men-2': 'Children’s haircut (up to 12 years)',
+                'pricelist-men-2-price': '200 CZK',
+                'pricelist-coloring-1': 'Hair coloring',
+                'pricelist-coloring-1-price': '1,000 CZK - 2,000 CZK',
+                'pricelist-coloring-2': 'Highlights',
+                'pricelist-coloring-2-price': '1,250 CZK - 2,500 CZK',
+                'pricelist-coloring-3': 'Ombre, balayage and other free hand techniques',
+                'pricelist-coloring-3-price': '1,900 CZK - 3,700 CZK',
+                'pricelist-coloring-4': 'Hair toning',
+                'pricelist-coloring-4-price': '700 CZK - 1,100 CZK',
+                'pricelist-treatments-1': 'Keratin straightening',
+                'pricelist-treatments-1-price': '1,600 CZK - 2,600 CZK',
+                'pricelist-treatments-2': 'Regenerating treatment (Happiness procedure for hair, regeneration with ultrasonic iron, Botox)',
+                'pricelist-treatments-2-price': '1,200 CZK - 2,800 CZK',
+                'pricelist-treatments-3': 'Nourishing mask',
+                'pricelist-treatments-3-price': '300 CZK - 600 CZK',
+                'hero-title': 'Exceptional Care for Your Beauty',
+                'hero-desc': 'Indulge yourself in our premium salon where luxury meets style and quality.',
+                'hero-btn': 'Book Appointment',
+                'contact-title': 'Contact',
+                'contact-visit': 'Visit Our Salon',
+                'contact-address': 'George Newman Luxury Salon, Sadová 19, 360 01 Karlovy Vary 1, Czech Republic',
+                'contact-phone': '+420 777 177 845',
+                'contact-email': 'Jorge.wilde.jh@gmail.com',
+                'contact-hours-title': 'Opening Hours:',
+                'contact-hours': 'Mon-Fri: 10:00 - 18:00, Sat-Sun: Closed or by appointment',
+                'contact-social': 'Contact us here',
+            },
+            ru: {
+                'nav-home': 'Главная',
+                'nav-about': 'О нас',
+                'nav-services': 'Услуги',
+                'nav-pricelist': 'Прайс-лист',
+                'nav-gallery': 'Галерея',
+                'nav-contact': 'Контакты',
+                'about-title': 'О нас',
+                'about-p1': 'Добро пожаловать в George Newman Luxury Salon, где красота встречается с элегантностью и профессиональным уходом. Наш салон — это место, где традиции сочетаются с современными тенденциями, чтобы предложить вам лучшее из обоих миров.',
+                'about-p2': 'Опытный стилист и парикмахер постоянно обучается и следит за последними тенденциями в уходе за волосами и красотой. Каждый клиент для нас уникален, и мы подходим к каждому с индивидуальной заботой и вниманием.',
+                'about-p3': 'Мы используем только премиальные продукты мировых брендов, которые бережно относятся к вашим волосам и коже. Наша цель — чтобы вы уходили не только с идеальной прической, но и с незабываемыми впечатлениями.',
+                'about-motto': '"Ваша красота — наша страсть. Роскошный уход, который вдохновляет."',
+                'services-title': 'Наши услуги',
+                'service-haircut': 'Стрижки и оформление',
+                'service-haircut-desc': 'Профессиональные стрижки по вашему желанию и типу волос. Предлагаем классические и современные стрижки для мужчин и женщин.',
+                'service-coloring': 'Окрашивание и мелирование',
+                'service-coloring-desc': 'Точное окрашивание волос с использованием премиальных красок. Предлагаем классические и креативные техники, включая балаяж, омбре и babylights.',
+                'service-styling': 'Стайлинг и укладки',
+                'service-styling-desc': 'Специальные услуги по укладке для идеального образа на любое событие. Предлагаем прически для свадеб, балов и особых случаев.',
+                'service-extensions': 'Наращивание волос',
+                'service-extensions-desc': 'Роскошное наращивание волос с использованием лучших методов и материалов для естественного вида и длительного эффекта.',
+                'service-book': 'Записаться',
+                'gallery-title': 'Галерея',
+                'pricelist-title': 'Прайс-лист услуг',
+                'pricelist-women': 'Женские услуги',
+                'pricelist-men': 'Мужские услуги',
+                'pricelist-coloring': 'Окрашивание',
+                'pricelist-treatments': 'Уход',
+                'pricelist-table-service': 'Услуга - Все цены зависят от длины и густоты волос, расхода материалов и времени',
+                'pricelist-table-price': 'Цена',
+                'pricelist-women-1': 'Женская стрижка, мытьё, сушка и финальная укладка',
+                'pricelist-women-1-price': '600 Kč - 1 000 Kč',
+                'pricelist-women-2': 'Детская стрижка (до 12 лет)',
+                'pricelist-women-2-price': '200 - 400 Kč',
+                'pricelist-men-1': 'Мужская стрижка (возможно с коррекцией бороды)',
+                'pricelist-men-1-price': '300 Kč - 500 Kč',
+                'pricelist-men-2': 'Детская стрижка (до 12 лет)',
+                'pricelist-men-2-price': '200 Kč',
+                'pricelist-coloring-1': 'Окрашивание волос',
+                'pricelist-coloring-1-price': '1 000 Kč - 2 000 Kč',
+                'pricelist-coloring-2': 'Мелирование',
+                'pricelist-coloring-2-price': '1 250 Kč - 2 500 Kč',
+                'pricelist-coloring-3': 'Омбре, балаяж и другие free hand техники',
+                'pricelist-coloring-3-price': '1 900 Kč - 3 700 Kč',
+                'pricelist-coloring-4': 'Тонирование волос',
+                'pricelist-coloring-4-price': '700 Kč - 1 100 Kč',
+                'pricelist-treatments-1': 'Кератиновое выпрямление',
+                'pricelist-treatments-1-price': '1 600 Kč - 2 600 Kč',
+                'pricelist-treatments-2': 'Восстанавливающая процедура (Процедура счастья для волос, восстановление с помощью ультразвукового утюжка, Ботокс)',
+                'pricelist-treatments-2-price': '1 200 Kč - 2 800 Kč',
+                'pricelist-treatments-3': 'Питательная маска',
+                'pricelist-treatments-3-price': '300 Kč - 600 Kč',
+                'hero-title': 'Исключительный уход за вашей красотой',
+                'hero-desc': 'Побалуйте себя в нашем премиум-салоне, где роскошь встречается со стилем и качеством.',
+                'hero-btn': 'Записаться',
+                'contact-title': 'Контакты',
+                'contact-visit': 'Посетите наш салон',
+                'contact-address': 'George Newman Luxury Salon, Sadová 19, 360 01 Карловы Вары 1, Чехия',
+                'contact-phone': '+420 777 177 845',
+                'contact-email': 'Jorge.wilde.jh@gmail.com',
+                'contact-hours-title': 'Время работы:',
+                'contact-hours': 'Пн-Пт: 10:00 - 18:00, Сб-Вс: Закрыто или по договоренности',
+                'contact-social': 'Связаться с нами здесь',
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            // Moderní zvýraznění aktivní vlajky
+            langFlagActive.src = langMap[lang].flag;
+            langLabelActive.textContent = langMap[lang].label;
+            document.querySelectorAll('.lang-btn-modern[data-lang]').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            });
+            currentLang = lang;
+        }
+        
+        // Nastavit výchozí jazyk podle prohlížeče nebo CZ
+        setLanguage('cs');
+        
+        // Oprava galerie (carousel) - vždy jen jedna fotka, správné šířky, funkční swipe a šipky
+        const galleryTrack = document.querySelector('.gallery-carousel-track');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const leftArrow = document.querySelector('.gallery-arrow.left');
+        const rightArrow = document.querySelector('.gallery-arrow.right');
+        let galleryIndex = 0;
+        function updateGallery() {
+            galleryTrack.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+            galleryTrack.style.transform = `translateX(-${galleryIndex * 100}%)`;
+        }
+        function setGalleryWidths() {
+            galleryTrack.style.width = `${galleryItems.length * 100}%`;
+            galleryItems.forEach(item => {
+                item.style.width = `100%`;
+                item.style.flex = `0 0 100%`;
+            });
+        }
+        setGalleryWidths();
+        updateGallery();
+        leftArrow.addEventListener('click', () => {
+            galleryIndex = (galleryIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateGallery();
+        });
+        rightArrow.addEventListener('click', () => {
+            galleryIndex = (galleryIndex + 1) % galleryItems.length;
+            updateGallery();
+        });
+        // Swipe gesture podpora pro mobil
+        let startX = 0;
+        let isDown = false;
+        galleryTrack.addEventListener('touchstart', e => {
+            isDown = true;
+            startX = e.touches[0].clientX;
+        });
+        galleryTrack.addEventListener('touchend', e => {
+            isDown = false;
+        });
+        galleryTrack.addEventListener('touchmove', e => {
+            if (!isDown) return;
+            let moveX = e.touches[0].clientX;
+            if (moveX - startX > 50) {
+                leftArrow.click();
+                isDown = false;
+            } else if (moveX - startX < -50) {
+                rightArrow.click();
+                isDown = false;
+            }
+        });
+    </script>
+</body>
+</html>
